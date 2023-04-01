@@ -11,12 +11,14 @@ echo <<<EOF
 	<title>AUDIO - INSPIRANIUM</title>
 </head>
 <body>
-<button onclick="new Player_audio();">PLAY</button>
+<button class="button_play_song" onclick="new Player_audio(1);">PLAY</button>
     <div class="container">
         <canvas id='canvas'></canvas>
     </div>
+    <div id="player"></div>
 
 </body>
+<script src="https://www.youtube.com/iframe_api"></script>
 <script src="script.js"></script>
 </html>
 
