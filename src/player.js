@@ -1,8 +1,8 @@
 class Player_audio  extends Form {
     barHeight;
-    constructor(mod) {
+    constructor(mod,nb) {
 
-        super();
+        super(nb);
 
         this.mod = mod;
         this.audio = new Audio('muse.mp3');
@@ -15,18 +15,18 @@ class Player_audio  extends Form {
         document.querySelector('button').style.top = '-100vh';
         document.body.style.cursor = 'none';
         document.documentElement.requestFullscreen();
-        this.number_of_element = 3;
+        this.number_of_element = 30;
         this.play();
+        this.made_lst_element();
+        setInterval(()=> {
+            this.animate_lst_element();
+        })
         if (this.mod === 1) {
             this.animate2();
         }
         else if (this.mod === 2) {
             this.animate();
         }
-        this.made_lst_element();
-        setInterval(()=> {
-            this.animate_lst_element();
-        })
     }
 
 
@@ -51,7 +51,7 @@ class Player_audio  extends Form {
 
     animate_lst_element() {
         for (let i = 0 ; i < this.number_of_element ; i++) {
-            this.animate_form(this.lst_element[i],Math.random()/60,i);
+            this.animate_form(this.lst_element[i],i);
         }
     }
 
@@ -90,6 +90,7 @@ class Player_audio  extends Form {
         this.x = 0;
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.analyser.getByteFrequencyData(this.data_array);
+        this.set_speed(this.data_array[0]/10000);
         for (let i = 0 ; i < this.buffer_len ; i++) {
             this.barHeight = this.data_array[i] *2;
             this.ctx.save();

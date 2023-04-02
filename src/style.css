@@ -23,7 +23,7 @@ canvas {
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: .1;
+    opacity: .6;
     transform: perspective(300px) rotateX(25deg);
 }
 

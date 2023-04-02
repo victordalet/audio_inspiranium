@@ -16,7 +16,7 @@ echo <<<EOF
 	<title>AUDIO - INSPIRANIUM</title>
 </head>
 <body>
-<button class="button_play_song" onclick="new Player_audio(2);">PLAY</button>
+<button class="button_play_song" onclick="new Player_audio(2,nb);">PLAY</button>
     <div class="container">
         <canvas id='canvas'></canvas>
     </div>
@@ -26,6 +26,15 @@ echo <<<EOF
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.151.2/three.min.js"></script>
 <script src="form.js"></script>
 <script src="player.js"></script>
+<script>
+let nb;
+fetch("../module/get_nb_picture.php")
+    .then(response => response.text())
+    .then(r => {
+        nb = r;
+    })
+
+</script>
 </html>
 
 EOF;
