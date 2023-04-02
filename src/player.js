@@ -15,6 +15,7 @@ class Player_audio  extends Form {
         document.querySelector('button').style.top = '-100vh';
         document.body.style.cursor = 'none';
         document.documentElement.requestFullscreen();
+        this.number_of_element = 3;
         this.play();
         if (this.mod === 1) {
             this.animate2();
@@ -22,12 +23,37 @@ class Player_audio  extends Form {
         else if (this.mod === 2) {
             this.animate();
         }
-        let cube = this.cube();
+        this.made_lst_element();
         setInterval(()=> {
-            this.animate_form(cube,0.01);
-        },1)
+            this.animate_lst_element();
+        })
     }
 
+
+    made_lst_element() {
+        this.lst_element = [];
+        for (let i = 0 ; i < this.number_of_element ; i++) {
+            const rdm = parseInt(Math.random()*10);
+            if (rdm < 2){
+                this.lst_element.push(this.sphere(i))
+            }
+            else if (rdm < 4) {
+                this.lst_element.push(this.cube(i));
+            }
+            else if (rdm < 6) {
+                this.lst_element.push(this.pyramid(i))
+            }
+            else {
+                this.lst_element.push(this.cone(i))
+            }
+        }
+    }
+
+    animate_lst_element() {
+        for (let i = 0 ; i < this.number_of_element ; i++) {
+            this.animate_form(this.lst_element[i],Math.random()/60,i);
+        }
+    }
 
 
     play() {

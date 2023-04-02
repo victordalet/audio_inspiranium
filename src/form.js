@@ -12,68 +12,67 @@ class Form {
     }
 
 
-    cube() {
+    cube(i) {
         const textureLoader = new THREE.TextureLoader();
         const texture = textureLoader.load('http://localhost:8888/1.jpg');
         const geometry = new THREE.BoxGeometry(1, 1, 1);
         const material = new THREE.MeshBasicMaterial({ map: texture });
         const cube = new THREE.Mesh(geometry, material);
         cube.position.x -= Math.random() * 2;
+        cube.position.z -= 5**(i+1);
         this.scene.add(cube);
         this.renderer.render(this.scene, this.camera);
         console.log(2);
         return cube;
     }
 
-    sphere() {
+    sphere(i) {
         const textureLoader = new THREE.TextureLoader();
         const texture = textureLoader.load('http://localhost:8888/1.jpg');
         const geometry = new THREE.SphereGeometry(1, 32, 32);
         const material = new THREE.MeshBasicMaterial({ map: texture });
         const sphere = new THREE.Mesh(geometry, material);
+        sphere.position.z -= 5**(i+1);
         this.scene.add(sphere);
         this.renderer.render(this.scene, this.camera);
         return sphere;
     }
 
-    pyramid() {
+    pyramid(i) {
         const textureLoader = new THREE.TextureLoader();
         const texture = textureLoader.load('http://localhost:8888/1.jpg');
         const geometry = new THREE.ConeGeometry(1, 2, 4);
         const material = new THREE.MeshBasicMaterial({ map: texture });
         const pyramid = new THREE.Mesh(geometry, material);
+        pyramid.position.z -= 5**(i+1);
         this.scene.add(pyramid);
         this.renderer.render(this.scene, this.camera);
         return pyramid;
     }
 
-    prism() {
+    cone(i) {
         const textureLoader = new THREE.TextureLoader();
         const texture = textureLoader.load('http://localhost:8888/1.jpg');
-        const baseShape = new THREE.Shape();
-        baseShape.moveTo(0, 0);
-        baseShape.lineTo(1, 0);
-        baseShape.lineTo(1, 1);
-        baseShape.lineTo(0.5, 1.5);
-        baseShape.lineTo(0, 1);
-        baseShape.lineTo(0, 0);
-        const extrudeSettings = { depth: 2, bevelEnabled: false };
-        const geometry = new THREE.ExtrudeGeometry(baseShape, extrudeSettings);
+        const geometry = new THREE.ConeGeometry(1, 2, 16);
         const material = new THREE.MeshBasicMaterial({ map: texture });
-        const prism = new THREE.Mesh(geometry, material);
-        this.scene.add(prism);
+        const cone = new THREE.Mesh(geometry, material);
+        cone.position.x -= Math.random() * 2;
+        cone.position.z -= 5**(i+1);
+        this.scene.add(cone);
         this.renderer.render(this.scene, this.camera);
-        return prism;
+        console.log(2);
+        return cone;
     }
 
-    animate_form(element,speed) {
+    animate_form(element,speed,i) {
         element.rotation.x -= speed;
         element.rotation.y -= speed;
         element.position.z += speed;
         if (element.position.z > 10) {
             element.position.z = this.speed;
-            element.position.x -= Math.random() * 2;
-            element.position.x += Math.random() * 2;
+            element.position.x -= Math.random() * 5;
+            element.position.x += Math.random() * 5;
+            element.position.z -= 5**(i+1);
         }
 
 
