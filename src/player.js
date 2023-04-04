@@ -5,7 +5,10 @@ class Player_audio  extends Form {
         super(nb);
 
         this.mod = mod;
-        this.audio = new Audio('muse.mp3');
+        this.input = document.querySelector('input');
+        console.log(this.input.files)
+        const blob = window.URL || window.webkitURL;
+        this.audio = this.input.files.length === 0 ? new Audio('muse.mp3') : new Audio(blob.createObjectURL(this.input.files[0]));
         this.audio.crossOrigin = "";
         this.audio_ctx = new AudioContext();
         this.canvas = document.querySelector('canvas');
@@ -13,9 +16,11 @@ class Player_audio  extends Form {
         this.canvas.height = window.innerHeight;
         this.ctx = this.canvas.getContext('2d');
         document.querySelector('button').style.top = '-100vh';
+        document.querySelector('.input-file-audio').style.top = '200vh';
+        this.input.style.top = '-100vh';
         document.body.style.cursor = 'none';
         document.documentElement.requestFullscreen();
-        this.number_of_element = 30;
+        this.number_of_element = 10;
         this.play();
         this.made_lst_element();
         setInterval(()=> {
@@ -51,7 +56,7 @@ class Player_audio  extends Form {
 
     animate_lst_element() {
         for (let i = 0 ; i < this.number_of_element ; i++) {
-            this.animate_form(this.lst_element[i],i);
+            this.animate_form(this.lst_element[i]);
         }
     }
 
@@ -90,7 +95,7 @@ class Player_audio  extends Form {
         this.x = 0;
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.analyser.getByteFrequencyData(this.data_array);
-        this.set_speed(this.data_array[0]/10000);
+        this.set_speed(this.data_array[0]/15000);
         for (let i = 0 ; i < this.buffer_len ; i++) {
             this.barHeight = this.data_array[i] *2;
             this.ctx.save();
@@ -105,4 +110,3 @@ class Player_audio  extends Form {
         requestAnimationFrame(() => this.animate());
     }
 }
-

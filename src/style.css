@@ -51,4 +51,42 @@ canvas {
     border : 2px solid #fff;
 }
 
+/*-----------------------*/
+
+input[type='file'] {
+    opacity: 0;
+    position: absolute;
+    top: 60vh;
+    left : calc(50vw - 100px);
+    z-index: 3;
+    width: 200px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.input-file-audio {
+    position: absolute;
+    top: 60vh;
+    width: 200px;
+    height: 50px;
+    background: white;
+    border: 2px solid white;
+    transition: .5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    color: black;
+    cursor: pointer;
+    z-index: 2;
+    left : calc(50vw - 100px);
+}
+
+input[type='file']:hover .input-file-audio {
+    background: black;
+    color: white;
+}
+
+
+
 

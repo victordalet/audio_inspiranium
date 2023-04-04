@@ -16,6 +16,8 @@ echo <<<EOF
 	<title>AUDIO - INSPIRANIUM</title>
 </head>
 <body>
+<div class="input-file-audio">YOU'R SOUNG</div>
+<input type="file" accept="audio/mp3"/>
 <button class="button_play_song" onclick="new Player_audio(2,nb);">PLAY</button>
     <div class="container">
         <canvas id='canvas'></canvas>
